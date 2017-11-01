@@ -1,0 +1,13 @@
+<div  class="form-group row">
+    <label>{{conf.judul}}</label>
+    <select *ngIf="conf.type=='select'"  [disabled]='conf.disabled' [required]='conf.required'   [(ngModel)]="value" class="form-control"  >
+        <option *ngFor="let options of options; let i = index" value="{{options.val}}" >
+            {{options.text}}
+        </option>  
+    </select>
+    <select *ngIf="conf.type!='select'"  [disabled]='conf.disabled' [required]='conf.required'   [(ngModel)]="value" class="form-control"  >
+        <option *ngFor="let data of data; let i = index" value="{{data.value}}" >
+            {{data.text}}
+        </option>  
+    </select>
+</div>

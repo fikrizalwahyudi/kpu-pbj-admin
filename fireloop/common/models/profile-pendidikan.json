@@ -1,0 +1,46 @@
+{
+  "name": "profile_pendidikan",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "mixins": {
+    "Stats": [
+      {
+        "method": "stats",
+        "endpoint": "/stats",
+        "description": "Statistical information for profile_pendidikan registers.",
+        "type": "model",
+        "count": {
+          "on": "createdAt",
+          "by": "index"
+        }
+      }
+    ]
+  },
+  "properties": {
+    "id": {
+      "type": "number"
+    },
+    "id_profile": {
+      "type": "number"
+    },
+    "keterangan": {
+      "type": "string"
+    },
+    "tahun": {
+      "type": "number"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "profile": {
+      "type": "belongsTo",
+      "model": "profile",
+      "foreignKey": "id_profile"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

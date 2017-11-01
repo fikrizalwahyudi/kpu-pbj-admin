@@ -1,0 +1,59 @@
+{
+  "name": "paslon",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "mixins": {
+    "Stats": [
+      {
+        "method": "stats",
+        "endpoint": "/stats",
+        "description": "Statistical information for paslon registers.",
+        "type": "model",
+        "count": {
+          "on": "createdAt",
+          "by": "index"
+        }
+      }
+    ]
+  },
+  "properties": {
+    "id": {
+      "type": "number"
+    },
+    "id_event": {
+      "type": "number"
+    },
+    "id_calon": {
+      "type": "number"
+    },
+    "id_wakil": {
+      "type": "number"
+    },
+    "nomor": {
+      "type": "number"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "event": {
+      "type": "belongsTo",
+      "model": "event",
+      "foreignKey": "id_event"
+    },
+    "calon": {
+      "type": "belongsTo",
+      "model": "profile",
+      "foreignKey": "id_calon"
+    },
+    "wakil": {
+      "type": "belongsTo",
+      "model": "profile",
+      "foreignKey": "id_wakil"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

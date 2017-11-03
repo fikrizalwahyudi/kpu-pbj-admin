@@ -49,6 +49,11 @@
       "type": "belongsTo",
       "model": "pendidikan_terakhir",
       "foreignKey": "id_pendidikan_terakhir"
+    },
+    "profile_pendidikan": {
+      "type": "hasMany",
+      "model": "profile_pendidikan",
+      "foreignKey": "id_profile"
     }
   },
   "acls": [],

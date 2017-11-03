@@ -12,6 +12,10 @@ import { ControlSidebarComponent } from './control-sidebar/control-sidebar.compo
 import { Dashboard1Component } from './dashboard/dashboard.component';
 import { ShareModule } from '../share/share.module';
 import { ProfileComponent } from './profile/profile.component';
+import { TokohComponent } from './master/tokoh/tokoh.component';
+import { TokohFormComponent } from './master/tokoh/tokoh-form/tokoh-form.component';
+import { EventComponent } from './master/event/event.component';
+import { EventFormComponent } from './master/event/event-form/event-form.component';
 
 
 @NgModule({
@@ -29,7 +33,7 @@ import { ProfileComponent } from './profile/profile.component';
     FooterComponent, 
     ControlSidebarComponent, 
     Dashboard1Component, 
-    ProfileComponent
+    ProfileComponent, TokohComponent, TokohFormComponent, EventComponent, EventFormComponent
   ],
   exports: [AdminComponent]
 })

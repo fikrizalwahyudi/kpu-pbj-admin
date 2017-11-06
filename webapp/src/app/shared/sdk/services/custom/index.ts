@@ -8,5 +8,6 @@ export * from './Paslon';
 export * from './Profile_pendidikan';
 export * from './Setting';
 export * from './Pendidikan_terakhir';
+export * from './Jadwal';
 export * from './SDKModels';
 export * from './logger.service';

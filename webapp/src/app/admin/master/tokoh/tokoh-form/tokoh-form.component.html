@@ -21,4 +21,24 @@
       </div>
     </form>
   </div>
+
+  <div class="box">
+    <ul class="nav nav-tabs" role="tablist">
+      <li role="presentation" class="active">
+        <a href="#rekamJejak" aria-controls="rekamJejak" role="tab" data-toggle="tab">Rekam Jejak</a>
+      </li>
+      <li role="presentation">
+        <a href="#profilePendidikan" aria-controls="profilePendidikan" role="tab" data-toggle="tab">Profile Pendidikan</a>
+      </li>
+    </ul>
+  
+    <div class="tab-content">
+      <div role="tabpanel" class="tab-pane active" id="rekamJejak">
+        <app-rekam-jejak *ngIf="proses" [idProfile]="data.id"></app-rekam-jejak>
+      </div>
+      <div role="tabpanel" class="tab-pane" id="profilePendidikan">
+        <app-profile-pendidikan *ngIf="proses" [idProfile]="data.id"></app-profile-pendidikan>
+      </div>
+    </div>
+  </div>
 </section>

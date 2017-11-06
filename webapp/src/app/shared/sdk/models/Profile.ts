@@ -1,5 +1,7 @@
 /* tslint:disable */
 import {
+  Rekam_jejak,
+  Profile_pendidikan,
   Pendidikan_terakhir
 } from '../index';
 
@@ -12,6 +14,8 @@ export interface ProfileInterface {
   "alamat"?: string;
   "id_pendidikan_terakhir"?: number;
   "photo"?: string;
+  rekam_jejak?: Rekam_jejak[];
+  profile_pendidikan?: Profile_pendidikan[];
   pendidikan_terakhir?: Pendidikan_terakhir;
 }
 
@@ -23,6 +27,8 @@ export class Profile implements ProfileInterface {
   "alamat": string;
   "id_pendidikan_terakhir": number;
   "photo": string;
+  rekam_jejak: Rekam_jejak[];
+  profile_pendidikan: Profile_pendidikan[];
   pendidikan_terakhir: Pendidikan_terakhir;
   constructor(data?: ProfileInterface) {
     Object.assign(this, data);
@@ -86,6 +92,16 @@ export class Profile implements ProfileInterface {
         },
       },
       relations: {
+        rekam_jejak: {
+          name: 'rekam_jejak',
+          type: 'Rekam_jejak[]',
+          model: 'Rekam_jejak'
+        },
+        profile_pendidikan: {
+          name: 'profile_pendidikan',
+          type: 'Profile_pendidikan[]',
+          model: 'Profile_pendidikan'
+        },
         pendidikan_terakhir: {
           name: 'pendidikan_terakhir',
           type: 'Pendidikan_terakhir',

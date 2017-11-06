@@ -1,42 +1,23 @@
-import { Component, OnInit, Input, Output, EventEmitter, forwardRef, AfterViewInit } from '@angular/core';
-import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
-import { CrudService } from '../library/_services/crud.service';
-import * as global from '../share/global'
-
-export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
-    provide: NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => SelectComponent),
-    multi: true
-};
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { ProfileApi } from '../shared/sdk/services/custom/Profile';
+import { Profile } from '../shared/sdk/models/Profile';
+import { EventApi } from '../shared/sdk/services/custom/Event';
+import { Event } from '../shared/sdk/models/Event';
 
 @Component({
     selector: 'acSelect',
-    templateUrl: './select.component.html',
-    providers: [CrudService]
+    templateUrl: './select.component.html'
 })
-export class SelectComponent implements OnInit, AfterViewInit {
-    @Input() conf: any;
+export class SelectComponent implements OnInit {
+    @Input() label: string;
+    @Input() tabel = 'status';
+    @Input() readonly = '';
+    @Input() required = 'false';
     @Output() valueChange = new EventEmitter();
-
     val: any;
-    private options: any;
-    private jabatan: any;
-    private produk: any;
-    private jk: any;
-    private cabang: any;
-    private identitas: any;
-    private membership: any;
-    private staff: any;
-    private satuanBarang: any;
-    private barang: any;
-    private service: any;
-    private data = new Array;
+    data = new Array;
 
-    constructor(private crudService: CrudService) {
-    }
-
-    ngAfterViewInit() {
-    }
+    constructor(private ProfileApi:ProfileApi, private EventApi:EventApi) {}
 
     @Input()
     get value() {
@@ -48,50 +29,53 @@ export class SelectComponent implements OnInit, AfterViewInit {
         this.valueChange.emit(this.val);
     }
 
-    cari() {
-
-    };
-    onSubmit() { alert('Masih Dalam Proses Pengembangan'); }; ngOnInit() {
-        if (this.conf.query == null) {
-            this.conf.query = {
-                param: 'all',
-                value: '#'
-            }
+    ngOnInit() {
+        if (this.tabel == 'profile') {
+            this.comboProfile();
+        } else if(this.tabel == 'status') {
+            this.comboStatus();
+        } else if (this.tabel == 'jenisKelamin') {
+            this.comboJenisKelamin();
+        } else if (this.tabel == 'event') {
+            this.comboEvent();
         }
 
-        if (this.conf.hidden == null) {
-            this.conf.hidden = false;
-        }
-
-        if (this.conf.type == null) {
-            this.conf.type = 'text';
-        }
-        if ((this.conf.judul == null || this.conf.judul == '') && this.conf.type != 'submit') {
-            alert('Judul belum di isi');
-        }
-        if ((this.conf.readonly == null || this.conf.readonly == '') && this.conf.type != 'submit') {
-            this.conf.readonly = '';
-        }
-        if ((this.conf.id == null || this.conf.id == '') && this.conf.type != 'submit') {
-            // alert('Id belum di isi');
-        }
-        if (this.conf.placeholder == null || this.conf.placeholder == '') {
-            this.conf.placeholder = this.conf.judul;
-        }
-        if (this.conf.disabled == null || this.conf.disabled == '') {
-            this.conf.disabled = 'false';
-        }
-        if (this.conf.name == null || this.conf.name == '') {
-            this.conf.name = this.conf.id;
-        }
-
-        if (this.conf.options == null || this.conf.options == '') {
-            this.conf.name = [];
-        } else {
-            this.options = this.conf.options;
-        }
     }
 
+    comboProfile() {
+        this.ProfileApi.find().subscribe((x: [Profile]) => {
+            x.forEach(temp => {
+                var isi = new Array;
+                isi['value'] = temp.id;
+                isi['text'] = temp.nama;
+                this.data.push(isi);
+            });
+        });
+    }
 
+    comboEvent() {
+        this.EventApi.find().subscribe((x: [Event]) => {
+            x.forEach(temp => {
+                var isi = new Array;
+                isi['value'] = temp.id;
+                isi['text'] = temp.nama;
+                this.data.push(isi);
+            });
+        });
+    }
+
+    comboStatus() {
+        this.data = [
+            {value: 0, text: 'Tidak Aktif'},
+            {value: 1, text: 'Aktif'},
+        ]
+    }
+
+    comboJenisKelamin() {
+        this.data = [
+            { value: 'l', text: 'Laki-laki' },
+            { value: 'p', text: 'Perempuan' },
+        ]
+    }
 
 }

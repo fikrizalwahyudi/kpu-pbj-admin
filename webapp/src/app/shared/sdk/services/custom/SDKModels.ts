@@ -9,6 +9,7 @@ import { Paslon } from '../../models/Paslon';
 import { Profile_pendidikan } from '../../models/Profile_pendidikan';
 import { Setting } from '../../models/Setting';
 import { Pendidikan_terakhir } from '../../models/Pendidikan_terakhir';
+import { Jadwal } from '../../models/Jadwal';
 
 export interface Models { [name: string]: any }
 
@@ -25,6 +26,7 @@ export class SDKModels {
     Profile_pendidikan: Profile_pendidikan,
     Setting: Setting,
     Pendidikan_terakhir: Pendidikan_terakhir,
+    Jadwal: Jadwal,
     
   };
 

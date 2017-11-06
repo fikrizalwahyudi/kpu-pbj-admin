@@ -53,6 +53,7 @@ import { PaslonApi } from './services/custom/Paslon';
 import { Profile_pendidikanApi } from './services/custom/Profile_pendidikan';
 import { SettingApi } from './services/custom/Setting';
 import { Pendidikan_terakhirApi } from './services/custom/Pendidikan_terakhir';
+import { JadwalApi } from './services/custom/Jadwal';
 /**
 * @module SDKBrowserModule
 * @description
@@ -91,6 +92,7 @@ export class SDKBrowserModule {
         Profile_pendidikanApi,
         SettingApi,
         Pendidikan_terakhirApi,
+        JadwalApi,
         internalStorageProvider,
         { provide: SDKStorage, useClass: StorageBrowser }
       ]

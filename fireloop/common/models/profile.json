@@ -54,6 +54,11 @@
       "type": "hasMany",
       "model": "profile_pendidikan",
       "foreignKey": "id_profile"
+    },
+    "rekam_jejak": {
+      "type": "hasMany",
+      "model": "rekam_jejak",
+      "foreignKey": "id_profile"
     }
   },
   "acls": [],

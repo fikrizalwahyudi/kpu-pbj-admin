@@ -12,6 +12,7 @@ export class TokohFormComponent implements OnInit {
   data = new Profile();
   ket = "baru";
   temp: any;
+  proses = false;
 
   constructor(private router: Router, private ProfileApi: ProfileApi, private aktifRouter: ActivatedRoute) {
     this.temp = aktifRouter.params['value'];
@@ -34,6 +35,7 @@ export class TokohFormComponent implements OnInit {
   ambilData(id) {
     this.ProfileApi.findById(id).subscribe((data: Profile) => {
       this.data = data;
+      this.proses = true;
     });
   }
 
